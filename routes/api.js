@@ -17,11 +17,19 @@ router
   .get(async (req, res) => {
     try {
       // Find workout in descending order based on time, limit the query to 1
-      const lastWorkout = await Workouts.findOne().sort({ day: -1 }).limit(1);
+      const lastWorkout = await Workouts.findOne()
+        .sort({ day: -1 })
+        .limit(1)
+        .populate('exercises');
+      let duration = 0;
+      for (let i = 0; i < lastWorkout.exercises.length; i++) {
+        duration += lastWorkout.exercises[i].duration;
+      }
+      lastWorkout.totalDuration = duration;
       res.status(200).json(lastWorkout);
-      console.log(lastWorkout);
     } catch (err) {
       res.status(418).json(err);
+      console.log(err);
     }
   });
 
