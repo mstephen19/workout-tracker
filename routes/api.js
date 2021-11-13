@@ -22,9 +22,11 @@ router
         .limit(1)
         .populate('exercises');
       let duration = 0;
-      for (let i = 0; i < lastWorkout.exercises.length; i++) {
-        duration += lastWorkout.exercises[i].duration;
-      }
+      // Loop through all exercises, add duration to duration variable
+      lastWorkout.exercises.forEach((ex) => {
+        duration += ex.duration;
+      });
+      // Set totalDuration to our duration variable
       lastWorkout.totalDuration = duration;
       res.status(200).json(lastWorkout);
     } catch (err) {
