@@ -1,3 +1,4 @@
+// Simple clear query to clear all seeds
 let mongoose = require('mongoose');
 let db = require('../models');
 

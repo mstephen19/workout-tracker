@@ -10,10 +10,12 @@ const ExerciseSchema = new Schema({
   name: {
     type: String,
     trim: true,
+    // Ensures the user doesn't input a string that's way too long
     validate: [({ length }) => length < 75, 'Type name too long.'],
   },
   duration: {
     type: Number,
+    // Makes sure the input is a number
     match: [/^[\d]$/, 'Must be a number.'],
   },
   distance: {
