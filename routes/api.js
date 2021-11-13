@@ -32,6 +32,16 @@ router.put('/workouts/:id', async (req, res) => {
     res.status(200).json(pushedTo);
   } catch (err) {
     res.status(418).json(err);
+    // console.log(err);
+  }
+});
+
+router.get('/workouts/range', async (req, res) => {
+  try {
+    const workoutsInRange = await Workouts.find({}).populate('exercises');
+    res.status(200).json(workoutsInRange);
+  } catch (err) {
+    res.status(418).json(err);
     console.log(err);
   }
 });

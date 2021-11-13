@@ -10,7 +10,7 @@ const ExerciseSchema = new Schema({
   name: {
     type: String,
     trim: true,
-    validate: [({ length }) => length < 40, 'Type name too long.'],
+    validate: [({ length }) => length < 75, 'Type name too long.'],
   },
   duration: {
     type: Number,
