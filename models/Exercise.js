@@ -5,12 +5,12 @@ const ExerciseSchema = new Schema({
   type: {
     type: String,
     trim: true,
-    validate: [({ length }) => length > 30, 'Type name too long.'],
+    validate: [({ length }) => length < 35, 'Type name too long.'],
   },
   name: {
     type: String,
     trim: true,
-    validate: [({ length }) => length > 50, 'Type name too long.'],
+    validate: [({ length }) => length < 40, 'Type name too long.'],
   },
   duration: {
     type: Number,

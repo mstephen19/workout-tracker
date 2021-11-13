@@ -14,16 +14,16 @@ router
   })
   .get(async (req, res) => {
     try {
-      const lastWorkout = await Workouts.findOne().sort({ data: -1 }).limit(1);
+      const lastWorkout = await Workouts.findOne().sort({ day: -1 }).limit(1);
       res.status(200).json(lastWorkout);
     } catch (err) {
       res.status(418).json(err);
     }
   });
 
-router.put('/workouts/:id', async ({ body }, res) => {
+router.put('/workouts/:id', async (req, res) => {
   try {
-    const { _id } = await Exercise.create(body);
+    const { _id } = await Exercise.create(req.body);
     const pushedTo = await Workouts.findOneAndUpdate(
       { _id: req.params.id },
       { $push: { exercises: _id } },
@@ -32,6 +32,7 @@ router.put('/workouts/:id', async ({ body }, res) => {
     res.status(200).json(pushedTo);
   } catch (err) {
     res.status(418).json(err);
+    console.log(err);
   }
 });
 
