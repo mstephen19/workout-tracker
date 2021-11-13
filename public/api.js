@@ -9,7 +9,7 @@ const API = {
     }
     const json = await res.json();
 
-    return json[json.length - 1];
+    return json;
   },
   //done
   async addExercise(data) {

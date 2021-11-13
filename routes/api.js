@@ -17,6 +17,7 @@ router
     try {
       const lastWorkout = await Workouts.findOne().sort({ day: -1 }).limit(1);
       res.status(200).json(lastWorkout);
+      console.log(lastWorkout);
     } catch (err) {
       res.status(418).json(err);
     }
